@@ -1,0 +1,92 @@
+:root{
+  --primary: #bc4123;
+  --secondary: #2b3452;
+}
+
+
+*{
+  padding: 0;
+  margin: 0;
+
+}
+body{
+  min-height: 100vh;
+  background: var(--secondary);
+  background-color: "bg-primary";
+
+}
+
+header nav{
+  display: flex;
+  justify-content: end;
+}
+
+nav a{
+  text-decoration: none;
+  padding: 10px 20px;
+}
+
+header nav h1{
+  margin-right: auto;
+  padding-left: 10px;
+}
+
+
+
+
+
+
+
+
+form{
+  max-width: 320px;
+  margin: auto;
+  box-shadow: 5px  5px 5px 5px rgba(0,0,0,0.2);
+  border-radius: 1rem;
+  margin-top: 50px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 50px;
+}
+form h2{
+  text-align: center;
+  padding: 20px;
+}
+
+form label, form input {
+  display: block;
+}
+.form button{
+  
+  padding: 5px;
+  border-radius: 1rem;
+  margin-top: 1rem;
+  align-content: center;
+}
+.form form button a{
+  text-decoration: none;
+  color: black;
+}
+
+/* Register form */
+.register form button a{
+
+  text-decoration: none;
+}
+.register form button {
+  margin-top: 10px;
+  padding: 0.5rem;
+  border-radius: 1rem;
+}
+
+/* Secrets page */
+.secrets-page h2{
+  display: flex;
+  justify-content: center;
+}
+.secrets-page p{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 5px 50px;
+}
