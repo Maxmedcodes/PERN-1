@@ -24,11 +24,12 @@ app.listen(5000, () => {
 // Add email and Password
 app.post("/register", async (req, res) => {
   try {
+    const name = req.body.name
     const email = req.body.email;
     const password = req.body.password;
     await pool.query(
-      "insert into logindetails(email, password) values($1, $2) Returning *",
-      [email, password]
+      "insert into users(name, email, password) values($1, $2, $3) Returning *",
+      [name,email, password]
     );
 
     res.send("Login details received");
