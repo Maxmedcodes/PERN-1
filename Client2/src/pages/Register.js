@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 const Register = () => {
   const [email, SetEmail] = useState();
   const [password, SetPassword] = useState();
+  const [name, SetName] = useState();
+
   const navigate = useNavigate();
 
   function emailchange(event) {
@@ -12,12 +14,15 @@ const Register = () => {
   function passwordchange(event) {
     SetPassword(event.target.value);
   }
+  function namechange(event) {
+    SetName(event.target.value);
+  }
 
   const onSubmitForm = async (e) => {
     e.preventDefault();
 
     try {
-      const data = { email, password };
+      const data = { name, email, password };
       const url = "http://localhost:5000/register";
       console.log("Making fetch request to:", url);
       const response = await fetch(url, {
@@ -35,14 +40,10 @@ const Register = () => {
     <div className="register">
       <form action="/register" method="post" onSubmit={onSubmitForm}>
         <h2> Register</h2>
+        <label>Name:</label>
+        <input type="text" id="name" value={name} onChange={namechange} />
         <label htmlFor="">Email:</label>
-        <input
-          type="email"
-          name=""
-          id="email"
-          value={email}
-          onChange={emailchange}
-        />
+        <input type="email" id="email" value={email} onChange={emailchange} />
         <label htmlFor="">Password</label>
         <input
           type="password"

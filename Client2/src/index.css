@@ -1,32 +1,33 @@
-:root{
+:root {
   --primary: #bc4123;
   --secondary: #2b3452;
 }
 
 
-*{
+* {
   padding: 0;
   margin: 0;
 
 }
-body{
-  min-height: 100vh;
+
+body {
+  min-height: 150vh;
   background: var(--secondary);
   background-color: "bg-primary";
 
 }
 
-header nav{
+header nav {
   display: flex;
   justify-content: end;
 }
 
-nav a{
+nav a {
   text-decoration: none;
   padding: 10px 20px;
 }
 
-header nav h1{
+header nav h1 {
   margin-right: auto;
   padding-left: 10px;
 }
@@ -38,41 +39,46 @@ header nav h1{
 
 
 
-form{
+form {
   max-width: 320px;
   margin: auto;
-  box-shadow: 5px  5px 5px 5px rgba(0,0,0,0.2);
+  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
   border-radius: 1rem;
   margin-top: 50px;
   padding-left: 50px;
   padding-right: 50px;
   padding-bottom: 50px;
 }
-form h2{
+
+form h2 {
   text-align: center;
   padding: 20px;
 }
 
-form label, form input {
+form label,
+form input {
   display: block;
 }
-.form button{
-  
+
+.form button {
+
   padding: 5px;
   border-radius: 1rem;
   margin-top: 1rem;
   align-content: center;
 }
-.form form button a{
+
+.form form button a {
   text-decoration: none;
   color: black;
 }
 
 /* Register form */
-.register form button a{
+.register form button a {
 
   text-decoration: none;
 }
+
 .register form button {
   margin-top: 10px;
   padding: 0.5rem;
@@ -80,13 +86,117 @@ form label, form input {
 }
 
 /* Secrets page */
-.secrets-page h2{
+.secrets-page h2 {
   display: flex;
   justify-content: center;
 }
-.secrets-page p{
+
+.secrets-page p {
   display: flex;
   justify-content: center;
   text-align: center;
   padding: 5px 50px;
 }
+
+/* Styling for Posts Page */
+
+.accountpage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.postinput {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 400px;
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.postinput label:first-of-type {
+  text-align: center;
+  width: 100%;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.postinput label:not(:first-of-type) {
+  display: block;
+  width: 100%;
+  text-align: left;
+  margin-bottom: 0.5rem;
+}
+
+.postinput input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.postinput button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  align-self: center;
+}
+
+.postinput button:hover {
+  background-color: green;
+  color: white;
+}
+
+.posts {
+  margin: 5rem 3rem 3rem 5rem;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.09);
+  background-color: rgba(0, 0, 0, 0.05);
+
+  width: 60%;
+}
+
+.posts button {
+  padding: 5px;
+  text-align: right;
+}
+
+.posts button:hover {
+  background-color: #bc4123;
+  color: white;
+}
+
+.accountpage h2 {
+  display: block;
+  text-align: center;
+}
+
+#ErrorMessage {
+  color: #bc4123;
+}
+
+
+/* .accountpage h2{
+  display: block;
+  text-align: center;
+}
+
+
+.postinput label{
+  display: block;padding: 0.5rem;
+}
+
+.postinput button:hover{
+  background-color: green;
+  color: white;
+}
+
+.posts{
+  margin-left: 1.5rem;
+  box-shadow: 3px 3px 3px rgba(0,0,0,0.09);
+  background-color: rgba(0,0,0,0.05);
+  padding: 1rem;
+} */

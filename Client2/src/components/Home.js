@@ -1,18 +1,59 @@
-import React from "react";
-// import Navbar from "./Navbar";
-// import Footer from "./Footer";
-import "bootstrap/dist/css/bootstrap.css";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+
+
+import { Link, useNavigate } from "react-router-dom";
+
 
 const Home = () => {
+  const navigate = useNavigate();
+
+  const [email, SetEmail] = useState()
+  const [password, SetPassword] = useState()
+  const [errorlogin, SetErrorLOgin] = useState("")
+
+  function submitEmailchange(event){
+    SetEmail(event.target.value)
+  }
+  function submitPasswordchange(event){
+    SetPassword(event.target.value)
+  }
+
+   const  onsubmitForm = async (event)=>  {
+    event.preventDefault()
+     
+    try{
+      const data ={email,password};
+      const url= "http://localhost:5000/login"
+      const response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (response.ok){
+        const result= await response.json()
+        
+        navigate("/posts");
+      }else{
+        const error= await response.json();
+        SetErrorLOgin(error.message)
+      }
+      
+    } catch (error) {
+      console.error(" ERROR Signing In: ", error);
+    }
+
+    
+  }
+
   return (
     <div className="form">
-      <form action="/login">
+      <form action="/posts" method="post" onSubmit={onsubmitForm}>
         <h2>Sign In</h2>
         <label> Username:</label>
-        <input type="email" name="" id="username" />
+        <input type="email" name="" id="username" value={email} onChange={submitEmailchange}/>
         <label htmlFor=""> Password</label>
-        <input type="password" name="" id="password" />
+        <input type="password" name="" id="password" value={password} onChange={submitPasswordchange}/>
+        <p id="ErrorMessage">{errorlogin}</p>
         <button>Sign In</button>
         <button>
           <Link to="/">

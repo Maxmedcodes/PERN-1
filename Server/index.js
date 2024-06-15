@@ -39,4 +39,31 @@ app.post("/register", async (req, res) => {
   }
 });
 
+
+// Sign In
+
+app.post("/login", async (req,res)=>{
+  try{
+    const email = req.body.email;
+    const password = req.body.password;
+    const result = await pool.query(
+      "select * from users where  email = $1 ",[email] 
+    )
+    if (result.rows.length > 0){
+      const user = result.rows[0]
+      const dbpassword = user.password
+
+      if (password === dbpassword){
+        res.status(200).json({message:"Login Succesful"})  
+      }else{
+        res.status(401).json({message:"Login Failed"})
+      }
+    }else{
+      res.status(401).json({ message: "User not found" })
+    }
+    console.log(result)
+  }catch(error){
+    console.log(error)
+  }
+})
 // show usernames
