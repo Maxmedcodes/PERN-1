@@ -14,6 +14,7 @@ import "bootstrap/dist/css/bootstrap.css";
 // import pages
 import Register from "./pages/Register.js";
 import Secrets from "./pages/Secrets.js";
+import AccountPage from "./pages/AccountPage.js";
 
 // import layouts
 import Navbar from "./components/Navbar.js";
@@ -25,6 +26,8 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path="register" element={<Register />} />
       <Route path="secrets" element={<Secrets />} />
+      <Route path="/signin" element={<Home />} />
+      <Route path="/posts" element={<AccountPage />} />
     </Route>
   )
 );
