@@ -2,9 +2,9 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
-  const [email, SetEmail] = useState();
-  const [password, SetPassword] = useState();
-  const [name, SetName] = useState();
+  const [email, SetEmail] = useState("");
+  const [password, SetPassword] = useState("");
+  const [name, SetName] = useState("");
 
   const navigate = useNavigate();
 
@@ -47,7 +47,7 @@ const Register = () => {
         <label htmlFor="">Password</label>
         <input
           type="password"
-          name=""
+          name="password"
           id="password"
           value={password}
           onChange={passwordchange}

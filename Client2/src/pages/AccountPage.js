@@ -1,13 +1,37 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AccountPage = () => {
+  // const data ={email,password};
+  // const navigate = useNavigate()
+  // useEffect( ()=>{
+  //   const checkAuth = async() =>{
+  //   try{
+  //    const response=   await fetch("http://localhost:5000/posts",{
+  //     method:"POST",
+  //     credentials: "include",
+  //     headers:{"Content-Type":"application/json"},
+  //     body:JSON.stringify(data)
+  //    })
+    
+  //    if(response.ok){
+  //     navigate("/posts")
+  //    } else{
+  //     navigate("/")
+  //    }
+  //   }catch(error){
+  //     console.log("Error with crednetials and sessions", error)
+  //     navigate("/")
+  //   }
+  //   } ; checkAuth()
+  // }, [navigate])
   const currentDate = new Date().toDateString();
 
-  const [title, SetTitle] = useState();
-  const [posts, SetPosts] = useState();
-  const [content, SetContent] = useState();
-  const [blogtitle, Setblogtitle] = useState();
-  const [time, SetTime] = useState();
+  const [title, SetTitle] = useState("");
+  const [posts, SetPosts] = useState("");
+  const [content, SetContent] = useState("");
+  const [blogtitle, Setblogtitle] = useState("");
+  const [time, SetTime] = useState("");
 
   function handleventchange(event) {
     SetPosts(event.target.value);
@@ -26,6 +50,7 @@ const AccountPage = () => {
   return (
     <div className="accountpage">
       <h2> $Users Blog</h2>
+      <button id="logout">Logout</button>
       <div className="postinput">
         <label>Blog</label>
         <label>Title:</label>

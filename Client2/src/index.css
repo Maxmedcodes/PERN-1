@@ -178,6 +178,17 @@ form input {
   color: #bc4123;
 }
 
+.accountpage #logout {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.4rem;
+  margin: 0.5rem;
+}
+
+.accountpage #logout:hover {
+  background-color: #bc4123;
+  color: white;
+}
 
 /* .accountpage h2{
   display: block;

@@ -8,7 +8,7 @@ export default function Navbar() {
           <h1>Navbar</h1>
           <NavLink to="/">Home</NavLink>
           <NavLink to="/register">Register</NavLink>
-          <NavLink to="/signin">Sign In </NavLink>
+          <NavLink to="/signin">Blogs </NavLink>
         </nav>
       </header>
       <main>

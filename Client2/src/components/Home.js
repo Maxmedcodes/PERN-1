@@ -7,8 +7,8 @@ import { Link, useNavigate } from "react-router-dom";
 const Home = () => {
   const navigate = useNavigate();
 
-  const [email, SetEmail] = useState()
-  const [password, SetPassword] = useState()
+  const [email, SetEmail] = useState("")
+  const [password, SetPassword] = useState("")
   const [errorlogin, SetErrorLOgin] = useState("")
 
   function submitEmailchange(event){
@@ -18,41 +18,44 @@ const Home = () => {
     SetPassword(event.target.value)
   }
 
-   const  onsubmitForm = async (event)=>  {
-    event.preventDefault()
-     
-    try{
-      const data ={email,password};
-      const url= "http://localhost:5000/login"
+  const onsubmitForm = async (event) => {
+    event.preventDefault();
+  
+    try {
+      const data = { email, password };
+      const url = "http://localhost:5000/login";
       const response = await fetch(url, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "Access-Control-Allow-Credentials": "true"
+        },
         body: JSON.stringify(data),
+        credentials: 'include'
       });
-      if (response.ok){
-        const result= await response.json()
-        
+  
+      if (response.ok) {
         navigate("/posts");
-      }else{
-        const error= await response.json();
-        SetErrorLOgin(error.message)
+      } else {
+        const error = await response.json();
+        SetErrorLOgin(error.message);
       }
-      
     } catch (error) {
-      console.error(" ERROR Signing In: ", error);
+      console.error("ERROR Signing In:", error);
+      SetErrorLOgin("An unexpected error occurred. Please try again.");
     }
-
-    
-  }
+  };
+  
 
   return (
     <div className="form">
       <form action="/posts" method="post" onSubmit={onsubmitForm}>
         <h2>Sign In</h2>
         <label> Username:</label>
-        <input type="email" name="" id="username" value={email} onChange={submitEmailchange}/>
+        <input type="email" name="username" id="username" value={email} onChange={submitEmailchange}/>
         <label htmlFor=""> Password</label>
-        <input type="password" name="" id="password" value={password} onChange={submitPasswordchange}/>
+        <input type="password" name="password" id="password" value={password} onChange={submitPasswordchange}/>
         <p id="ErrorMessage">{errorlogin}</p>
         <button>Sign In</button>
         <button>
