@@ -190,6 +190,12 @@ form input {
   color: white;
 }
 
+/* Loading Animation */
+#loading {
+  display: flex;
+  justify-content: center;
+}
+
 /* .accountpage h2{
   display: block;
   text-align: center;

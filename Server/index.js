@@ -29,7 +29,10 @@ app.use(session({
   secret:"TOPSECRET",
   resave: false,
   saveUninitialized:true,
-  cookie:{secure: false}
+  cookie:{
+    secure: false,
+    maxAge: 1000 * 60 * 5
+  }
 }))
 
 app.use(passport.initialize())
@@ -40,10 +43,20 @@ pool.connect();
 
 
 // Re-Routes  Non Logged In Users
-app.get("/posts", passport.authenticate("local",{
-  successRedirect:"http://localhost:3000/posts",
-  failureRedirect:"http://localhost:3000/"
-}))
+
+
+app.get("/posts", (req, res) => {
+  console.log('Authenticated:', req.isAuthenticated());
+  console.log('Session:', req.session);
+  if (req.isAuthenticated()) {
+    res.sendStatus(200);
+  } else {
+    res.sendStatus(403);
+  }
+});
+
+
+
 
 // Add email and Password
 app.post("/register", async (req, res) => {
@@ -101,12 +114,12 @@ app.post("/login", (req, res, next) => {
 });
 
 // LogOut
-app.post("/logout",function(req,res,next){
+app.get("/logout",function(req,res,next){
   req.logout(function(err){
     if(err){
       return next(err)
     }
-    res.redirect("/")
+    res.sendStatus(200)
   })
 })
 
