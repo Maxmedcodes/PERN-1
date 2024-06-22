@@ -31,7 +31,7 @@ app.use(session({
   saveUninitialized:true,
   cookie:{
     secure: false,
-    maxAge: 1000 * 60 * 5
+    maxAge: 1000 * 60 * 30
   }
 }))
 
@@ -45,15 +45,51 @@ pool.connect();
 // Re-Routes  Non Logged In Users
 
 
-app.get("/posts", (req, res) => {
+app.get("/posts", async(req, res) => {
   console.log('Authenticated:', req.isAuthenticated());
   console.log('Session:', req.session);
+  const user_id = req.user.id;
   if (req.isAuthenticated()) {
-    res.sendStatus(200);
+    
+    try {
+      const result = await pool.query(
+        "select blog_title, blog_content from blogposts where user_id=$1",[user_id]
+      )
+      const response = result.rows
+      res.status(200).json( response );
+      
+    } catch (error) {
+      console.log("Unable to get Data to display on webpage",error)
+      res.status(500).json({ message: "Error retrieving blog posts" });
+      
+    }
   } else {
     res.sendStatus(403);
   }
 });
+
+// Submit content
+app.post("/submit",async (req,res)=>{
+  if (req.isAuthenticated){
+    console.log("User is authenticated:")
+    
+  }
+  const userid = req.user.id;
+  const blogtitle = req.body.title;
+  const blogcontent = req.body.posts
+  console.log("Adding data to blogpost DB: ");
+  console.log(userid);
+  console.log(blogtitle);
+  console.log(blogcontent)
+  try {
+    const blogpostresponse= await pool.query(
+      "insert into blogposts(user_id,blog_title,blog_content) values ($1,$2,$3)",[userid,blogtitle,blogcontent]
+    )
+    
+  } catch (error) {
+    console.log(error)
+  }
+})
 
 
 

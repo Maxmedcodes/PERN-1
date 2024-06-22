@@ -196,6 +196,20 @@ form input {
   justify-content: center;
 }
 
+#serverdata {
+  width: 80%;
+}
+
+#dbdata {
+
+  margin: 5rem 3rem 3rem 5rem;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.09);
+  background-color: rgba(0, 0, 0, 0.05);
+
+
+  width: 100%;
+}
+
 /* .accountpage h2{
   display: block;
   text-align: center;
