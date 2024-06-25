@@ -48,12 +48,12 @@ pool.connect();
 app.get("/posts", async(req, res) => {
   console.log('Authenticated:', req.isAuthenticated());
   console.log('Session:', req.session);
-  const user_id = req.user.id;
+  // const user_id = req.user.id;
   if (req.isAuthenticated()) {
-    
+    const user_id = req.user.id;
     try {
       const result = await pool.query(
-        "select blog_title, blog_content from blogposts where user_id=$1",[user_id]
+        "select id,blog_title, blog_content from blogposts where user_id=$1",[user_id]
       )
       const response = result.rows
       res.status(200).json( response );
@@ -85,7 +85,17 @@ app.post("/submit",async (req,res)=>{
     const blogpostresponse= await pool.query(
       "insert into blogposts(user_id,blog_title,blog_content) values ($1,$2,$3)",[userid,blogtitle,blogcontent]
     )
-    
+    try{
+      const result = await pool.query(
+        "select id,blog_title, blog_content from blogposts where user_id=$1",[userid]
+
+      )
+      const response = result.rows
+      res.status(200).json(response)
+    }catch(error){
+      console.log("Failed to get Data after submitting new content: " , error)
+
+    }
   } catch (error) {
     console.log(error)
   }
@@ -158,7 +168,21 @@ app.get("/logout",function(req,res,next){
     res.sendStatus(200)
   })
 })
-
+app.delete("/delete/:id", async (req, res) => {
+  const postId = req.params.id;
+  try {
+    console.log(`Received request to delete post with id: ${postId}`);
+    const response = await pool.query(
+      "DELETE FROM blogposts WHERE user_id = $1",
+      [postId]
+    );
+    console.log(`Deleted ${response.rowCount} row(s)`);
+    res.status(200).json({ message: "Post deleted successfully" });
+  } catch (error) {
+    console.log("Error Deleting post: ", error);
+    res.status(500).json({ error: "An error occurred while deleting the post" });
+  }
+});
 
 
 passport.use(new LocalStrategy({

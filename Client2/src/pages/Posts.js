@@ -11,6 +11,7 @@ const Posts = () => {
   const [blogTitle, setBlogTitle] = useState("");
   const [time, setTime] = useState("");
   const [dbContent, setDbContent] = useState([]); // Initialize as an empty array
+  const [user,SetUser] =useState("")
   const [isLoading, setIsLoading] = useState(true);
 
   function handlePostChange(event) {
@@ -39,9 +40,13 @@ const Posts = () => {
         body: JSON.stringify(data),
         credentials: "include"
       });
-
+      
       if (!response.ok) {
         console.log("Error adding data to DB");
+      }
+      if(response.ok){
+        const mydata = await response.json()
+        setDbContent(mydata || [])
       }
     } catch (error) {
       console.log("Error adding data to DB: ", error);
@@ -90,19 +95,29 @@ const Posts = () => {
     }
   };
 
- async function deletepost(postId) {
-  try {
-    const response = await fetch(`http://localhost:5000/posts/${postId}`,{
-      method:"DELETE",
-      headers:{
-        "Content-Type":"application/json"
-      },
-      credentials:"include"
-    })
-  } catch (error) {
-    console.log("Error deleting blogpost: ",error)
+  async function deletePost(postId) {
+    try {
+      console.log(`Attempting to delete post with id: ${postId}`);
+      const response = await fetch(`http://localhost:5000/delete/${postId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
+      if (response.ok) {
+        console.log("Post deleted successfully");
+        // Update the local state to reflect the deleted post
+        setDbContent(dbContent.filter(post => post.id !== postId));
+        navigate("/posts");
+      } else {
+        console.error("Failed to delete post");
+      }
+    } catch (error) {
+      console.log("Error deleting blog post: ", error);
+    }
   }
- }
+
 
   useEffect(() => {
     isUserAuthenticated();
@@ -129,21 +144,22 @@ const Posts = () => {
         <input type="text" value={posts} onChange={handlePostChange} name="posts" />
         <button onClick={submitContent}>Add</button>
       </div>
-      <div className="posts">
+      {/* <div className="posts">
         <div><h3>Your Blog Posts:</h3></div>
         <h2>{blogTitle}</h2>
         <p>{content}</p>
         <p>Author: $User </p>
         <button>Delete</button>
         <p>{time}</p>
-      </div>
+      </div> */}
       <div id="serverdata">
       <h1>Below is db data:</h1>
       {dbContent.map((post, index) => (
-        <div key={post.id} id="dbdata">
+        <div key={index} id="dbdata">
           <h2>{post.blog_title}</h2>
+          <h3>The id is {post.id}</h3>
           <p>{post.blog_content}</p>
-          <button onClick={deletepost(post.id)}>Delete</button>
+          <button onClick={() =>deletePost(post.id)}>Delete</button>
         </div>
       ))}
       </div>

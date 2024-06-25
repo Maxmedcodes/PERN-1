@@ -8,18 +8,20 @@
   padding: 0;
   margin: 0;
 
+
 }
 
 body {
   min-height: 150vh;
   background: var(--secondary);
-  background-color: "bg-primary";
+  background-color: #2b3452;
 
 }
 
 header nav {
   display: flex;
   justify-content: end;
+
 }
 
 nav a {
