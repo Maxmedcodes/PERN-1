@@ -82,7 +82,7 @@ const Posts = () => {
         credentials: "include" // Ensure credentials are included
       });
       if (response.status !== 200) {
-        navigate("/");
+        navigate("/signin");
       } else {
         const mydata = await response.json();
         console.log("Backend to frontend", mydata);

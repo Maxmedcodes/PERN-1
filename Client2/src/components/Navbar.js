@@ -5,15 +5,17 @@ export default function Navbar() {
     <div className="root-layout">
       <header>
         <nav>
-          <h1>Navbar</h1>
+          <h1>Blogell &copy;</h1>
           <NavLink to="/">Home</NavLink>
           <NavLink to="/register">Register</NavLink>
           <NavLink to="/posts">Blogs </NavLink>
+          <NavLink to="/signin">Sign In</NavLink>
         </nav>
       </header>
       <main>
         <Outlet />
       </main>
+      
     </div>
   );
 }

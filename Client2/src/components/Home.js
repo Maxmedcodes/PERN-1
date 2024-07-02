@@ -50,51 +50,45 @@ const Home = () => {
 
   return (
     <div className="form">
-      <form action="/posts" method="post" onSubmit={onsubmitForm}>
-        <h2>Sign In</h2>
-        <label> Username:</label>
-        <input type="email" name="username" id="username" value={email} onChange={submitEmailchange}/>
-        <label htmlFor=""> Password</label>
-        <input type="password" name="password" id="password" value={password} onChange={submitPasswordchange}/>
-        <p id="ErrorMessage">{errorlogin}</p>
-        <button>Sign In</button>
-        <button>
-          <Link to="/">
-            Sign In with Google
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              x="0px"
-              y="0px"
-              width="30"
-              height="30"
-              viewBox="0 0 48 48"
-            >
-              <path
-                fill="#FFC107"
-                d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"
-              ></path>
-              <path
-                fill="#FF3D00"
-                d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"
-              ></path>
-              <path
-                fill="#4CAF50"
-                d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"
-              ></path>
-              <path
-                fill="#1976D2"
-                d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"
-              ></path>
-            </svg>
-          </Link>
-        </button>
-        <p>Don't have an Account?</p>
-        <button>
-          <Link to="/register">Sign Up</Link>
-        </button>
-      </form>
+      <div className="blog-home-title">
+        <h1>Lets Blog </h1>
+      </div>
+      <div className="blog-home-image">
+        <div className="blog-section-1">
+          <h3>Welcome to Blogell</h3>
+          <img src="/images/Blogell.jpg" alt="blog image"  height={200} width={200}/>
+          <p>
+            Blogell is A Website that allows you to create an Account in which you can post your blogs and 
+            view them. Your account is stored securely on our Postgres server your details are hashed using bcrypt on our backend  <br/> <br/> 
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat eveniet saepe voluptates nulla. Veritatis est, suscipit 
+            repudiandae eaque enim odit ullam error accusantium at, sint, quis minus doloribus dicta provident. 
+            Corrupti, rerum atque voluptatem sunt quaerat ea dolore. Corrupti ab dolor unde, eveniet cum beatae adipisci molestias nam 
+            optio iste!</p>
+            <div className="homepage-buttons">
+            <Link to={"/signin"} id="login-button">Login </Link>
+            <Link to={"/register"} id="register-button">Register</Link>
+            </div>
+        </div>
+        <div className="blog-section-2">
+        <h3>Time: Our Eternal Enemy</h3>
+        
+        <p> <img src="./images/time.png" alt="clock image" height={200} width={200} /> Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit tenetur assumenda in, quibusdam fuga possimus pariatur maxime perspiciatis autem inventore, consequatur dolorem provident perferendis eligendi enim iusto asperiores qui nemo labore impedit, ullam veritatis libero. Officiis nulla quo tempore soluta nam delectus, veniam, voluptate cumque magni ex, distinctio ipsam quidem.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic quae mollitia itaque dolorum reiciendis voluptatem blanditiis
+           debitis excepturi nostrum ea perferendis rerum cumque, accusantium molestiae minus odio, animi voluptate. Eos enim veritatis
+           ab hic optio aliquam debitis voluptatem tempore dolor blanditiis. Soluta laudantium eius corporis dolores, voluptatum voluptas facilis eos?</p>
+      </div>
+        <div className="blog-section-2">
+        <h3>Football: The Eternal Game</h3>
+        
+        <p> <img src="./images/footballer.jpeg" alt="footballer" height={200} width={200} /> Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit tenetur assumenda in, quibusdam fuga possimus pariatur maxime perspiciatis autem inventore, consequatur dolorem provident perferendis eligendi enim iusto asperiores qui nemo labore impedit, ullam veritatis libero. Officiis nulla quo tempore soluta nam delectus, veniam, voluptate cumque magni ex, distinctio ipsam quidem.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic quae mollitia itaque dolorum reiciendis voluptatem blanditiis
+           debitis excepturi nostrum ea perferendis rerum cumque, accusantium molestiae minus odio, animi voluptate. Eos enim veritatis
+           ab hic optio aliquam debitis voluptatem tempore dolor blanditiis. Soluta laudantium eius corporis dolores, voluptatum voluptas facilis eos?</p>
+      </div>
+      </div>
+      
     </div>
   );
 };
 
 export default Home;
+
+
