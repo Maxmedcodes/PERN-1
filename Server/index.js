@@ -31,7 +31,7 @@ app.use(session({
   saveUninitialized:true,
   cookie:{
     secure: false,
-    maxAge: 1000 * 60 * 30
+    maxAge: 1000 * 60 * 60
   }
 }))
 
@@ -67,6 +67,23 @@ app.get("/posts", async(req, res) => {
     res.sendStatus(403);
   }
 });
+app.put("/edit/:id", async(req,res)=>{
+  const {title,content} = req.body
+  
+  const id = req.params.id
+  
+  try {
+    
+    const response = await pool.query(
+      "update blogposts set blog_title = $2, blog_content=$3 where id=$1",[id,title,content]
+    )
+    res.status(200).json({ message: "Post updated successfully" });
+  } catch (error) {
+    console.log("Error adding New Data to DB: ", error);
+    res.status(500).json({ message: "Error updating post" });
+    
+  }
+})
 
 // Submit content
 app.post("/submit",async (req,res)=>{
@@ -101,6 +118,23 @@ app.post("/submit",async (req,res)=>{
   }
 })
 
+// Edit Posts
+
+
+app.get("/edit/:id", async(req,res)=>{
+  const id = req.params.id
+  try {
+    console.log("URL ID is : ",id)
+    const response = await pool.query(
+      "select user_id, blog_title,blog_content from blogposts where id=$1",[id]
+    )
+    // const result =  response.rows[0].stringify
+    const result = response.rows[0]
+    res.status(200).json(result)
+  } catch (error) {
+    res.status(505).json({message:error})
+  }
+})
 
 
 
@@ -183,6 +217,9 @@ app.delete("/delete/:id", async (req, res) => {
     res.status(500).json({ error: "An error occurred while deleting the post" });
   }
 });
+
+
+
 
 
 passport.use(new LocalStrategy({

@@ -3,6 +3,7 @@ import {
   createRoutesFromElements,
   Route,
   RouterProvider,
+  useParams,
 } from "react-router-dom";
 
 import Home from "./components/Home.js";
@@ -16,6 +17,7 @@ import Register from "./pages/Register.js";
 import Secrets from "./pages/Secrets.js";
 import Posts from "./pages/Posts.js";
 import SignIn from "./pages/SignIn.js";
+import Edit from "./pages/Edit.js";
 
 // import layouts
 import Navbar from "./components/Navbar.js";
@@ -30,6 +32,7 @@ const router = createBrowserRouter(
       <Route path="/home" element={<Home />} />
       <Route path="signin" element={<SignIn/>}/>
       <Route path="/posts" element={<Posts />} />
+      <Route path="edit/:id" element={<Edit/>}/>
     </Route>
   )
 );

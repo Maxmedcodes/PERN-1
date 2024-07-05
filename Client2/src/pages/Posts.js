@@ -13,6 +13,7 @@ const Posts = () => {
   const [dbContent, setDbContent] = useState([]); // Initialize as an empty array
   const [user,SetUser] =useState("")
   const [isLoading, setIsLoading] = useState(true);
+  const [editID, SetEditID] = useState("")
 
   function handlePostChange(event) {
     setPosts(event.target.value);
@@ -117,7 +118,16 @@ const Posts = () => {
       console.log("Error deleting blog post: ", error);
     }
   }
-
+   const edit = (postID)=>{
+    try {
+      console.log(`ID of post is :  ${postID}`)
+      SetEditID(postID)
+      navigate(`/edit/${postID}`)
+    } catch (error) {
+      console.log("Error moving Edit posts")
+      
+    }
+  }
 
   useEffect(() => {
     isUserAuthenticated();
@@ -153,13 +163,14 @@ const Posts = () => {
         <p>{time}</p>
       </div> */}
       <div id="serverdata">
-      <h1>Below is db data:</h1>
+      <h1>Your Blogs:</h1>
       {dbContent.map((post, index) => (
         <div key={index} id="dbdata">
           <h2>{post.blog_title}</h2>
           <h3>The id is {post.id}</h3>
           <p>{post.blog_content}</p>
-          <button onClick={() =>deletePost(post.id)}>Delete</button>
+          <button onClick={()=> edit(post.id)}>Edit</button>
+          <button onClick={() =>deletePost(post.id)} id="delete">Delete</button>
         </div>
       ))}
       </div>
@@ -169,3 +180,4 @@ const Posts = () => {
 };
 
 export default Posts;
+

@@ -55,11 +55,11 @@ const Home = () => {
       </div>
       <div className="blog-home-image">
         <div className="blog-section-1">
-          <h3>Welcome to Blogell</h3>
+          <h3>Welcome to Blogell </h3>
           <img src="/images/Blogell.jpg" alt="blog image"  height={200} width={200}/>
           <p>
             Blogell is A Website that allows you to create an Account in which you can post your blogs and 
-            view them. Your account is stored securely on our Postgres server your details are hashed using bcrypt on our backend  <br/> <br/> 
+            view them. Your account is stored securely on our Postgres server your details are hashed using bcrypt on our backend  <br/>  
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat eveniet saepe voluptates nulla. Veritatis est, suscipit 
             repudiandae eaque enim odit ullam error accusantium at, sint, quis minus doloribus dicta provident. 
             Corrupti, rerum atque voluptatem sunt quaerat ea dolore. Corrupti ab dolor unde, eveniet cum beatae adipisci molestias nam 

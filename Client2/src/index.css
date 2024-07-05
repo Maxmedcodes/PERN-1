@@ -120,13 +120,16 @@ img {
   margin-left: 2rem;
 }
 
-/* .homepage-buttons {
+.homepage-buttons {
   display: flex;
-  margin-right: 2rem;
-} */
+  justify-content: center;
+
+}
+
+
 
 #register-button {
-  font-size: 16px;
+  font-size: 20px;
   margin: 0em 2.5em 0 2.5em;
   background: black;
   border: none;
@@ -138,7 +141,7 @@ img {
 }
 
 #login-button {
-  font-size: 16px;
+  font-size: 20px;
   margin: 0em 2.5em 0 0;
   background: black;
   border: none;
@@ -238,6 +241,7 @@ form input {
   flex-direction: column;
   align-items: center;
   margin-top: 2rem;
+
 }
 
 .postinput {
@@ -250,6 +254,7 @@ form input {
   border: 1px solid #ccc;
   border-radius: 8px;
   background-color: #f9f9f9;
+  margin-bottom: 4rem;
 }
 
 .postinput label:first-of-type {
@@ -277,6 +282,7 @@ form input {
   padding: 0.5rem 1rem;
   cursor: pointer;
   align-self: center;
+  border-radius: 1rem;
 }
 
 .postinput button:hover {
@@ -303,8 +309,10 @@ form input {
 }
 
 .accountpage h2 {
+  width: 80%;
   display: block;
   text-align: center;
+  background: #f2eaeac3
 }
 
 #ErrorMessage {
@@ -316,6 +324,7 @@ form input {
   justify-content: flex-end;
   padding: 0.4rem;
   margin: 0.5rem;
+  background: #f2eaeac3
 }
 
 .accountpage #logout:hover {
@@ -331,6 +340,7 @@ form input {
 
 #serverdata {
   width: 80%;
+  background: #f2eaeac3
 }
 
 #dbdata {
@@ -338,9 +348,17 @@ form input {
   margin: 5rem 3rem 3rem 5rem;
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.09);
   background-color: rgba(0, 0, 0, 0.05);
+  background: #b6b4b4c3;
 
 
-  width: 100%;
+  width: 80%;
+}
+
+#dbdata button {
+  margin: 1rem;
+  padding: 0.3rem;
+  border: #f2eaeac3 5px solid;
+  border-radius: 1rem;
 }
 
 /* Footer  */
@@ -365,6 +383,43 @@ footer h4 {
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
+
+
+/* Edit post page */
+.editblog form {
+  max-width: 480px;
+}
+
+.editblog form>input {
+  margin: 1rem 0;
+
+}
+
+#edit-title {
+  width: 100%;
+}
+
+#edit-user {
+  width: 100%;
+}
+
+.editblog form>button {
+  width: 100%;
+  padding: 0.3rem;
+  border-radius: 0.3rem;
+  background-color: #dbd8d8c3;
+  font-weight: 600;
+  font-size: larger;
+
+}
+
+.editblog form>h1 textarea input {
+  margin: 1rem 0;
+
+
+
+}
+
 
 .footer-header-1 {}
 
